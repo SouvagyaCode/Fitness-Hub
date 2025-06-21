@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitness Hub</title>
+    <style>
+        .hidden { display: none; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    
+</head>
+<body>
+    <h1>Welcome to Fitness Hub</h1>
+    <button onclick="document.getElementById('options').style.display='block'">Get Started</button>
+
+    <div id="options" class="hidden">
+        <form action="/bmi-form">
+            <button type="submit">Search Personalized Exercises</button>
+        </form>
+        <form action="/search-form">
+            <button type="submit">Search Available Exercises</button>
+        </form>
+    </div>
+
+    <script>
+ 
+        document.querySelector('button').addEventListener('click', function () {
+            document.getElementById('options').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

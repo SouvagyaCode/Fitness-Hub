@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Exercise</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/exercise.css')}}">
+</head>
+<body>
+    <h1 class="main-title">Personalized Exercise Plan</h1>
+
+    {% if exercises %}
+    {% for exercise in exercises %}
+    <div class="exercise">
+        <img src="{{ url_for('static', filename='images/' + exercise.name + '.jpg') }}"
+     alt="{{ exercise.name }} image"
+     class="exercise-img"
+     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/default.jpg') }}';">
+
+
+        <div class="exercise-details">
+            <div class="exercise-title">{{ exercise.name|capitalize }}</div>
+            <p><span class="label">Instructions:</span></p>
+            <ul>
+                {% for step in exercise.instructions.split('.') if step.strip() %}
+                    <li>{{ step.strip() }}.</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+        <p>No exercises found. Please try again later.</p>
+    {% endif %}
+</body>
+</html>

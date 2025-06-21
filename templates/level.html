@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>level</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/level.css') }}">
+</head>
+<body>
+
+    {% if bmi %}
+    <h2>Your BMI: {{ bmi }}</h2>
+    {% endif %}
+
+    <form method="post" action="/level">
+        <input type="hidden" name="height" value="{{ height }}">
+        <input type="hidden" name="weight" value="{{ weight }}">
+        <input type="hidden" name="goal" value="{{ goal }}"> 
+
+        <label for="level">Difficulty:</label>
+        <select name="level" id="level">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+        </select>
+
+        <label for="equipment">Equipment Available:</label>
+        <select name="equipment" id="equipment">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>

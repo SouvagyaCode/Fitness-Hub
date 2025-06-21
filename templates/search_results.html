@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seached Exercises</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/exercise.css')}}">
+</head>
+<body>
+    {% if exercises %}
+    {% for exercise in exercises %}
+    <div class="exercise">
+        <img src="{{ url_for('static', filename='images/' + exercise.name|lower + '.jpg') }}"
+     alt="{{ exercise.name }} image"
+     class="exercise-img"
+     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/default.jpg') }}';">
+
+
+        <div class="exercise-details">
+            <div class="exercise-title">{{ exercise.name|capitalize }}</div>
+            <p><span class="label">Type:</span> {{ exercise.type }}</p>
+            <p><span class="label">Muscle:</span> {{ exercise.muscle }}</p>
+            <p><span class="label">Difficulty:</span> {{ exercise.difficulty }}</p>
+            <p><span class="label">Equipment:</span> {{ exercise.equipment }}</p>
+            <p><span class="label">Instructions:</span></p>
+            <ul>
+                {% for step in exercise.instructions.split('.') if step.strip() %}
+                    <li>{{ step.strip() }}.</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>No results found</h1>
+    {% endif %}
+</body>
+</html>
