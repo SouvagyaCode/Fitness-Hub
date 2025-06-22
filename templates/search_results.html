@@ -10,7 +10,7 @@
     {% if exercises %}
     {% for exercise in exercises %}
     <div class="exercise">
-        <img src="{{ url_for('static', filename='images/' + exercise.name|lower + '.jpg') }}"
+        <img src="{{ url_for('static', filename='images/' + exercise.name|lower|replace(' ', '-') + '.jpg') }}"
      alt="{{ exercise.name }} image"
      class="exercise-img"
      onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/default.jpg') }}';">
