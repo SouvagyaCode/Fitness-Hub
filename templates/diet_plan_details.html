@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ response.result.seo_title }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f7f9fc;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      flex: 1 1 auto;
+      min-height: 160px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 10px 0;
+    }
+
+    .section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+
+    .meal h3 {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  {% if response %}
+    <h1>{{ response.result.seo_title }}</h1>
+    <p>{{ response.result.seo_content }}</p>
+
+    <div class="card-container">
+      <div class="card">
+        <h2>🎯 Goal</h2>
+        <p>{{ response.result.goal }}</p>
+      </div>
+
+      <div class="card">
+        <h2>🔥 Calories/Day</h2>
+        <p>{{ response.result.calories_per_day }} kcal</p>
+      </div>
+
+      <div class="card">
+        <h2>⚖️ Macronutrients</h2>
+        <ul>
+          <li>Carbs: {{ response.result.macronutrients.carbohydrates }}</li>
+          <li>Proteins: {{ response.result.macronutrients.proteins }}</li>
+          <li>Fats: {{ response.result.macronutrients.fats }}</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>💪 Exercise</h2>
+        <p><strong>{{ response.result.exercise_name }}</strong></p>
+        <p>{{ response.result.description }}</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🍽️ Meals</h2>
+      {% for meal in response.result.meal_suggestions %}
+        <div class="meal">
+          <h3>{{ meal.meal }}</h3>
+          {% for suggestion in meal.suggestions %}
+            <p><strong>{{ suggestion.name }}</strong> — {{ suggestion.calories }} kcal</p>
+            <ul>
+              {% for ingredient in suggestion.ingredients %}
+                <li>{{ ingredient }}</li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No plan found. Please submit the form.</p>
+  {% endif %}
+
+</body>
+</html>

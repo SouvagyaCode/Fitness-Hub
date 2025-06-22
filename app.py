@@ -6,63 +6,51 @@ import os
 load_dotenv()
 app = Flask(__name__)
 
-API_KEY = os.getenv("API_KEY")  # Ensure your .env file contains API_KEY=your_key
-
+API_KEY = os.getenv("API_KEY")
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
+@app.route('/diet',methods = ['GET'])
+def diet():
+    return render_template('diet_plan.html')
 
-@app.route('/bmi-form', methods=['GET', 'POST'])
-def bmi_form():
+@app.route('/diet-plan', methods=['GET', 'POST'])
+def diet_plan():
+    response_text = None
+
     if request.method == 'POST':
-        height_cm = float(request.form['height']) 
-        weight = float(request.form['weight'])
-        height = height_cm / 100
+        current_weight = float(request.form['current_weight'])
+        target_weight = float(request.form['target_weight'])
+        dietary_restrictions = request.form.getlist('dietary_restrictions')
+        daily_activity_level = request.form['daily_activity_level']
+        payload = {
+            "goal": "Lose weight" if current_weight > target_weight else "Gain weight",
+            "dietary_restrictions": dietary_restrictions,
+            "current_weight": current_weight,
+            "target_weight": target_weight,
+            "daily_activity_level": daily_activity_level,
+            "lang": "en"
+        }
 
-        bmi = round(weight / (height ** 2), 1)
+        url = "https://ai-workout-planner-exercise-fitness-nutrition-guide.p.rapidapi.com/nutritionAdvice"
+        headers = {
+            "x-rapidapi-key": "70ce8777famshbeabf21202fc074p17d603jsna2ef26e10c7c",
+            "x-rapidapi-host": "ai-workout-planner-exercise-fitness-nutrition-guide.p.rapidapi.com",
+            "Content-Type": "application/json"
+        }
 
-        if bmi < 18.5:
-            goal = 'bulk'
-        elif bmi < 25:
-            goal = 'fit'
+        querystring = {"noqueue": "1"}
+        res = requests.post(url, json=payload, headers=headers, params=querystring)
+
+        if res.status_code == 200:
+            response_text = res.json()
+            
         else:
-            goal = 'cut'
+            response_text = {"error": res.text}
 
-        return render_template('level.html', bmi=bmi, height=height_cm, weight=weight, goal=goal)
-
-    return render_template('bmi_form.html')
-
-
-@app.route('/level', methods=['POST'])
-def level():
-    level = request.form['level']
-    equipment = request.form['equipment']
-    goal = request.form['goal']
-
-    muscle_map = {
-        'bulk': ['chest', 'biceps', 'triceps', 'quadriceps'],
-        'fit': ['cardio', 'core', 'calves'],
-        'cut': ['abs', 'adductors', 'glutes']
-    }
-
-    muscles = muscle_map.get(goal.lower(), ['full_body'])
-
-    exercises = []
-
-    for muscle in muscles:
-        url = f"https://api.api-ninjas.com/v1/exercises?muscle={muscle}&difficulty={level}"
-        response = requests.get(url, headers={'X-Api-Key': API_KEY})
-
-        if response.status_code == 200:
-            data = response.json()
-            if equipment == 'no':
-                safe_equipment = ['none', 'body_only', 'no_equipment', 'bodyweight', 'no-equipment']
-                data = [ex for ex in data if ex.get('equipment', '').strip().lower() in safe_equipment]
-            exercises.extend(data)
-
-    return render_template('exercises.html', exercises=exercises)
+    return render_template('diet_plan_details.html', response=response_text)
 
 
 @app.route('/search-form', methods=['GET'])
@@ -73,6 +61,9 @@ def search_form():
 @app.route('/search', methods=['POST'])
 def search():
     query = request.form['query']
+
+    query = query.strip().lower().replace(' ', '-')
+    
     url = f"https://api.api-ninjas.com/v1/exercises?name={query}"
     response = requests.get(url, headers={'X-Api-Key': API_KEY})
 
@@ -81,7 +72,6 @@ def search():
         exercises = response.json()
 
     return render_template('search_results.html', exercises=exercises)
-
 
 if __name__ == '__main__':
     app.run(debug=True)

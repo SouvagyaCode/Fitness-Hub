@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/diet_plan.css') }}">
+    <title>Diet Plan</title>
+
+</head>
+<body>
+    <form action="/diet-plan" method="post">
+        
+        <input type="text" name="current_weight" placeholder="Current weight">
+        <input type="text" name="target_weight" placeholder="Target weight">
+            
+        <label>Select dietary restrictions:</label><br>
+        <select name="dietary_restrictions" multiple>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Keto">Keto</option>
+            <option value="Gluten-Free">Gluten-Free</option>
+            <option value="Non-Vegetarian">Non-Vegetarian</option>
+        </select>
+        <label for="daily_activity_level">Daily Activity Level:</label>
+        <select name="daily_activity_level" id="daily_activity_level" required>
+            <option value="Sedentary">Sedentary</option>
+            <option value="Light">Light</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Active">Active</option>
+            <option value="Very Active">Very Active</option>
+            <option value="Super Active">Super Active</option>
+            <option value="Extremely Active">Extremely Active</option>
+        </select>
+
+        <button type="submit">Submit</button>
+
+</form>
+
+
+</body>
+</html>
