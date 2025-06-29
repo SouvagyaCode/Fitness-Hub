@@ -1,0 +1,60 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #fcfcfd;
+  color: #222;
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #1e90ff;
+  margin-bottom: 0.2em;
+}
+
+.subheading {
+  margin-bottom: 1.5em;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-left: 4px solid #1e90ff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+ul {
+  margin: 0.5em 0 0 1.2em;
+  padding: 0;
+}
+
+.section {
+  background: #fefefe;
+  padding: 1.2rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.meal {
+  margin-bottom: 1.5rem;
+}
+
+.no-plan {
+  color: #999;
+  font-style: italic;
+}

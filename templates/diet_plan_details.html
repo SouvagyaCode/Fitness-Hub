@@ -3,66 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ response.result.seo_title }}</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 30px;
-      background: #f7f9fc;
-      color: #333;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      width: 250px;
-      flex: 1 1 auto;
-      min-height: 160px;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    ul {
-      padding-left: 18px;
-      margin: 10px 0;
-    }
-
-    .section {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      margin-top: 30px;
-    }
-
-    .meal h3 {
-      margin-bottom: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/diet_plan_details.css') }}">
 </head>
 <body>
 
   {% if response %}
     <h1>{{ response.result.seo_title }}</h1>
-    <p>{{ response.result.seo_content }}</p>
+    <p class="subheading">{{ response.result.seo_content }}</p>
 
-    <div class="card-container">
+    <div class="cards">
       <div class="card">
         <h2>🎯 Goal</h2>
         <p>{{ response.result.goal }}</p>
@@ -106,7 +55,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <p>No plan found. Please submit the form.</p>
+    <p class="no-plan">No plan found. Please submit the form.</p>
   {% endif %}
 
 </body>
