@@ -7,6 +7,7 @@ load_dotenv()
 app = Flask(__name__)
 
 API_KEY = os.getenv("API_KEY")
+API_KEY_DIET = os.getenv("API_KEY_DIET")
 
 @app.route('/')
 def home():
@@ -36,7 +37,7 @@ def diet_plan():
 
         url = "https://ai-workout-planner-exercise-fitness-nutrition-guide.p.rapidapi.com/nutritionAdvice"
         headers = {
-            "x-rapidapi-key": "70ce8777famshbeabf21202fc074p17d603jsna2ef26e10c7c",
+            "x-rapidapi-key": API_KEY_DIET,
             "x-rapidapi-host": "ai-workout-planner-exercise-fitness-nutrition-guide.p.rapidapi.com",
             "Content-Type": "application/json"
         }
@@ -60,11 +61,12 @@ def search_form():
 
 @app.route('/search', methods=['POST'])
 def search():
-    query = request.form['query']
-
-    query = query.strip().lower().replace(' ', '-')
+    muscle = request.form['muscle']
+    muscle = muscle.strip().lower()
     
-    url = f"https://api.api-ninjas.com/v1/exercises?name={query}"
+    difficulty = request.form['difficulty']
+
+    url = f"https://api.api-ninjas.com/v1/exercises?muscle={muscle}&difficulty={difficulty}"
     response = requests.get(url, headers={'X-Api-Key': API_KEY})
 
     exercises = []

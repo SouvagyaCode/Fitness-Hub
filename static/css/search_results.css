@@ -1,91 +1,54 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: url("../images/default.jpg") no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    color: #f2f2f2; /* Light text for better contrast */
-}
-
-h1, h2, .main-title {
-    color: #f0f0f0;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
-}
-
-.exercise {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px) brightness(0.9);
-    -webkit-backdrop-filter: blur(15px) brightness(0.9);
-    border-radius: 20px;
     padding: 20px;
-    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+.results-container {
     max-width: 900px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    color: #fff; /* Ensure all text inside is light */
+    margin: 0 auto;
 }
-
+.exercise-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
 .exercise-img {
-    width: 300px;
-    height: auto;
-    border-radius: 15px;
+    width: 250px;
+    height: 180px;
     object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-right: 1px solid #ddd;
 }
-
 .exercise-details {
+    padding: 15px;
     flex: 1;
 }
-
 .exercise-title {
-    font-size: 1.8em;
-    font-weight: 700;
+    font-size: 1.4em;
+    font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #111;
 }
-
 .label {
-    font-weight: 600;
-    color: #e0e0e0;
+    font-weight: bold;
+    color: #555;
 }
-
-ul {
-    padding-left: 20px;
-    margin-top: 10px;
+p {
+    margin: 6px 0;
+    line-height: 1.4;
 }
-
-ul li {
-    margin-bottom: 6px;
-    line-height: 1.5;
-    color: #f5f5f5;
-}
-
-@media (max-width: 768px) {
-    .exercise {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .exercise-img {
-        width: 100%;
-        max-width: 500px;
-    }
-
-    .exercise-details {
-        text-align: left;
-    }
-}
-
-.main-title {
+h1 {
     text-align: center;
-    font-size: 2.2em;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    color: #ffffff;
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    color: #888;
+}
+.instruction-box {
+    background: #f5f5f5;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-top: 5px;
+    border: 1px solid #e0e0e0;
 }

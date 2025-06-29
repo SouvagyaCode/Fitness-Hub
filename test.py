@@ -1,6 +1,5 @@
 import os
 
-# Path to your image directory
 image_folder = "static/images"
 
 # Loop through all files in the folder

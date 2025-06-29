@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head><title>Search Exercises</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/search_form.css') }}">
+<head>
+    <title>Search Exercises</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/search_form.css')}}"">
 </head>
 <body>
-    <h2>Search Exercises by Name</h2>
+
+    <center>
+        <h2>Search Exercises</h2>
+    </center>
+
     <form method="post" action="/search">
-        <input type="text" name="query" placeholder="e.g. push-up, squat">
-        <button type="submit">Search</button>
+        <table align="center" cellpadding="10">
+            <tr>
+                <td><label for="muscle">Muscle Group:</label></td>
+                <td><input type="text" name="muscle" id="muscle" placeholder="e.g. chest, biceps" required></td>
+            </tr>
+            <tr>
+                <td><label for="difficulty">Difficulty:</label></td>
+                <td>
+                    <select name="difficulty" id="difficulty" required>
+                        <option value="">-- Select Difficulty --</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Search</button>
+                </td>
+            </tr>
+        </table>
     </form>
+
 </body>
 </html>
