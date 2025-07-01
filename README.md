@@ -14,7 +14,7 @@
 
 
 ### 🏋️ Exercise Result Page
-![Exercise Result](images/5.jpeg)
+![Exercise Result](images/3.jpeg)
 
 
 ### 📋 Diet Preferences Page
@@ -87,7 +87,6 @@ pip install -r requirements.txt
 
 # Run the Flask app
 python app.py
-
 
 Fitness-Hub/
 │
