@@ -9,6 +9,7 @@ app = Flask(__name__)
 API_KEY = os.getenv("API_KEY")
 API_KEY_DIET = os.getenv("API_KEY_DIET")
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -26,6 +27,7 @@ def diet_plan():
         target_weight = float(request.form['target_weight'])
         dietary_restrictions = request.form.getlist('dietary_restrictions')
         daily_activity_level = request.form['daily_activity_level']
+        
         payload = {
             "goal": "Lose weight" if current_weight > target_weight else "Gain weight",
             "dietary_restrictions": dietary_restrictions,
@@ -77,3 +79,21 @@ def search():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# from flask import Flask,render_template
+# from dotenv import load_dotenv
+# import os
+# load_dotenv()
+
+# API_KEY = os.getenv('API_KEY')
+# API_KEY_DIET = os.getenv("API_KEY_DIET")
+
+# app = Flask(__name__)
+
+# @app.get('/')
+# def home():
+#     return render_template('home.html')
+
+# @app.route('/diet')
+# def diet_plan():
+#     render render_template('')
