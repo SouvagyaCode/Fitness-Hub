@@ -4,7 +4,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 # 🏋️‍♂️ Fitness Hub
 
-**Fitness Hub** is a lightweight fitness web application that offers users personalized **diet plans** and **exercise recommendations** based on selected muscle groups and difficulty levels. Built using **Flask**, **HTML**, and **CSS**, it serves static content without any backend database. The app is simple, responsive, and beginner-friendly — perfect for quick fitness guidance.
+**Fitness Hub** is a fitness web application that offers users personalized **diet plans** and **exercise recommendations** based on selected muscle groups and difficulty levels. Built using **Flask**, **HTML**, and **CSS**, it serves static content without any backend database. The app is simple and beginner-friendly — perfect for quick fitness guidance.
 
 ---
 
@@ -33,10 +33,8 @@
 ## 🚀 Features
 
 - Personalized diet plan suggestions  
-- Exercise recommendations by muscle group and difficulty level  
-- Responsive and user-friendly interface  
-- Fully static — no backend database or login system  
-- Built using Flask for routing, with HTML & CSS for UI
+- Exercise recommendations by muscle group and difficulty level   
+- Built using Flask for routing and serving API-fetched data
 
 ---
 
@@ -60,17 +58,3 @@ pip install -r requirements.txt
 
 # Run the Flask app
 python app.py
-
-Fitness-Hub/
-│
-├── static/
-│   ├── css/
-│   └── images/
-│
-├── templates/
-│   ├── index.html
-│   └── diet_plan.html
-│
-├── app.py
-├── requirements.txt
-└── README.md
