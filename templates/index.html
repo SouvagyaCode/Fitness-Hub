@@ -3,9 +3,27 @@
 <head>
     <title>Fitness Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    
 </head>
 <body>
+    <nav>
+        {% if user %}
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span>👤 {{ user }}</span>
+                <form action="/logout" method="get">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        {% else %}
+            <!-- Login & Signup buttons -->
+            <form action="/register">
+                <button type="submit">Signup</button>
+            </form>
+            <form action="/login">
+                <button type="submit">Login</button>
+            </form>
+        {% endif %}
+    </nav>
+
     <h1>Welcome to Fitness Hub</h1>
     <button onclick="document.getElementById('options').style.display='block'">Get Started</button>
 
@@ -19,7 +37,6 @@
     </div>
 
     <script>
- 
         document.querySelector('button').addEventListener('click', function () {
             document.getElementById('options').classList.remove('hidden');
         });

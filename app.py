@@ -79,21 +79,3 @@ def search():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# from flask import Flask,render_template
-# from dotenv import load_dotenv
-# import os
-# load_dotenv()
-
-# API_KEY = os.getenv('API_KEY')
-# API_KEY_DIET = os.getenv("API_KEY_DIET")
-
-# app = Flask(__name__)
-
-# @app.get('/')
-# def home():
-#     return render_template('home.html')
-
-# @app.route('/diet')
-# def diet_plan():
-#     render render_template('')
