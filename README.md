@@ -8,28 +8,6 @@
 
 ---
 
-## 📸 Screenshots
-
-### 🏠 Home Page
-![Home Page - Top](images/1.jpeg)
-
-### 💪 Exercise Preferences Form
-![Exercise Form](images/2.jpeg)
-
-
-### 🏋️ Exercise Result Page
-![Exercise Result](images/3.jpeg)
-
-
-### 📋 Diet Preferences Page
-![Diet Preferences Page](images/4.jpeg)
-
-
-### 🏋️ Diet Plane Page
-![Exercise Result](images/5.jpeg)
-
----
-
 ## 🚀 Features
 
 - Personalized diet plan suggestions  

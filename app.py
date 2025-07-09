@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from dotenv import load_dotenv
 import requests
 import os
+import random
 
 load_dotenv()
 app = Flask(__name__)
@@ -9,6 +10,22 @@ app = Flask(__name__)
 API_KEY = os.getenv("API_KEY")
 API_KEY_DIET = os.getenv("API_KEY_DIET")
 
+def generate_week_plan():
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
+    muscle_groups = [
+        "abdominals", "abductors", "adductors", "biceps", "calves",
+        "chest", "forearms", "glutes", "hamstrings", "lats",
+        "lower_back", "middle_back", "neck", "quadriceps", "traps", "triceps"
+    ]
+
+    selected_muscle_groups = random.sample(muscle_groups, 7)
+    # print(selected_muscle_groups)
+    random.shuffle(selected_muscle_groups)
+
+    plan = dict(zip(days, selected_muscle_groups))
+    # print(plan)
+    return plan
 
 @app.route('/')
 def home():
@@ -56,9 +73,9 @@ def diet_plan():
     return render_template('diet_plan_details.html', response=response_text)
 
 
-@app.route('/search-form', methods=['GET'])
-def search_form():
-    return render_template('search_form.html')
+# @app.route('/search-form', methods=['GET'])
+# def search_form():
+#     return render_template('search_form.html')
 
 
 @app.route('/search', methods=['POST'])
@@ -76,6 +93,14 @@ def search():
         exercises = response.json()
 
     return render_template('search_results.html', exercises=exercises)
+
+
+
+@app.route('/weekly-plan')
+def weekly_plan():
+    plan = generate_week_plan()
+    return render_template('weekly_plan.html', plan=plan)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

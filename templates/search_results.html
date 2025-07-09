@@ -16,9 +16,6 @@
                      onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/default.jpg') }}';">
                 <div class="exercise-details">
                     <div class="exercise-title">{{ exercise.name|capitalize }}</div>
-                    <p><span class="label">Type:</span> {{ exercise.type }}</p>
-                    <p><span class="label">Muscle:</span> {{ exercise.muscle }}</p>
-                    <p><span class="label">Difficulty:</span> {{ exercise.difficulty }}</p>
                     <p><span class="label">Equipment:</span> {{ exercise.equipment }}</p>
                 <p><span class="label">Instructions:</span></p>
                 <div class="instruction-box">

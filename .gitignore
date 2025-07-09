@@ -5,3 +5,5 @@ __pycache__/
 test.py
 render.yaml
 video.mp4
+templates/search_form.html
+templates/search_results.html
